@@ -32,6 +32,24 @@ class PlayerList(object):
 
         self._len += 1
 
+    def push_tail(self, value):
+        new_node = PlayerNode(value)
+
+        if self.is_empty():
+            self._head = new_node
+            self._tail = new_node
+
+        else:
+            new_node.next_player = self._tail
+            self._tail.prev_node = new_node
+            self._tail = new_node
+
+            current_node = self._tail
+            while current_node.next_node is not None:
+                current_node = current_node.next_node
+                self._head = current_node
+
+
     def is_empty(self):
         if self._head is None:
             return True

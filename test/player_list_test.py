@@ -19,3 +19,13 @@ class TestPlayerList(unittest.TestCase):
         player_list.push('Player3')
         self.assertEqual(player_list._head._player, 'Player3')
         self.assertEqual(player_list._tail._player, 'Player1')
+
+    def test_player_list_push_tail(self):
+        player_list = PlayerList()
+        player_list.push('Player1')
+        player_list.push('Player2')
+        player_list.push('Player3')
+        player_list.push_tail('PlayerPUSH')
+        player_list.push('Player4')
+        self.assertEqual(player_list._tail._player, 'PlayerPUSH')
+        self.assertEqual(player_list._head._player, 'Player4')
