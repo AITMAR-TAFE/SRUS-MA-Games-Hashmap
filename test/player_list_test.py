@@ -29,3 +29,19 @@ class TestPlayerList(unittest.TestCase):
         player_list.push('Player4')
         self.assertEqual(player_list._tail._player, 'PlayerPUSH')
         self.assertEqual(player_list._head._player, 'Player4')
+
+    def test_player_list_delete_head(self):
+        player_list = PlayerList()
+        player_list.push('Player1')
+        player_list.push('Player2')
+        player_list.push('Player3')
+        player_list.delete_head()
+        self.assertEqual(player_list._head._player, 'Player2')
+
+    def test_player_list_delete_tail(self):
+        player_list = PlayerList()
+        player_list.push('Player1')
+        player_list.push('Player2')
+        player_list.push('Player3')
+        player_list.delete_tail()
+        self.assertEqual(player_list._tail._player, 'Player2')

@@ -21,7 +21,7 @@ class PlayerList(object):
             self._tail = new_node
 
         else:
-            new_node.next_player = self._head
+            new_node.next_node = self._head
             self._head.prev_node = new_node
             self._head = new_node
 
@@ -40,16 +40,53 @@ class PlayerList(object):
             self._tail = new_node
 
         else:
-            new_node.next_player = self._tail
-            self._tail.prev_node = new_node
+            self._tail.next_node = new_node
+            new_node.prev_node = self._tail
             self._tail = new_node
+    def delete_head(self):
+        if self.is_empty():
+            raise ValueError
 
-            current_node = self._tail
-            while current_node.next_node is not None:
-                current_node = current_node.next_node
-                self._head = current_node
+        if self._head == self._tail:
+            self._head = None
+            self._tail = None
+
+        else:
+            self._head = self._head.next_node
+            self._head.prev_node = None
+
+        self._len -= 1
+
+    def delete_tail(self):
+        if self.is_empty():
+            raise ValueError
+
+        if self._tail == self._head:
+            self._tail = None
+            self._head = None
+
+        else:
+            self._tail = self._tail.prev_node
+            # self._tail.prev_node = None
+
+        self._len -= 1
 
 
     def is_empty(self):
         if self._head is None:
             return True
+
+# if __name__ == '__main__':
+#     players = PlayerList()
+#     players.push('Player1')
+#     players.push('Player2')
+#     players.push('Player3')
+#     players.push('Player4')
+#     print(f"Before delete head: Head: {players._head._player}, Tail: {players._tail._player}")
+#     players.delete_head()
+#     print(f"After delete head: Head: {players._head._player}, Tail: {players._tail._player}")
+#     print("----")
+#     print(f"Before delete tail: Head: {players._head._player}, Tail: {players._tail._player}")
+#     players.delete_tail()
+#     print(f"After delete tail: Head: {players._head._player}, Tail: {players._tail._player}")
+
