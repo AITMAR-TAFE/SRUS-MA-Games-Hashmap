@@ -67,10 +67,21 @@ class PlayerList(object):
 
         else:
             self._tail = self._tail.prev_node
-            # self._tail.prev_node = None
+            self._tail.prev_node = None
 
         self._len -= 1
 
+    def delete_key(self, value):
+        if self.is_empty():
+            raise ValueError
+
+        if self._head == value:
+            self._head = None
+            self._tail = None
+
+        else:
+            if value == self._head.next_node:
+                self._head =self._head.next_node
 
     def is_empty(self):
         if self._head is None:
