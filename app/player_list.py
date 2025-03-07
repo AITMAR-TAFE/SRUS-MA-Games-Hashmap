@@ -1,4 +1,5 @@
 from app.player_node import PlayerNode
+from app.player import Player
 
 
 class PlayerList(object):
@@ -43,6 +44,7 @@ class PlayerList(object):
             self._tail.next_node = new_node
             new_node.prev_node = self._tail
             self._tail = new_node
+
     def delete_head(self):
         if self.is_empty():
             raise ValueError
@@ -75,29 +77,57 @@ class PlayerList(object):
         if self.is_empty():
             raise ValueError
 
-        if self._head == value:
-            self._head = None
-            self._tail = None
+        current_node = self._head
 
-        else:
-            if value == self._head.next_node:
-                self._head =self._head.next_node
+        # option 1 - If the head of list matches value that needs to be deleted
+        if current_node.key == value:
+            self._head = self._head.next_node
+            if self._head:
+                self._head.prev_node = None
+            else:
+                self._tail = None
+            return
+
+        # option 2 - Head is not the value
+        while current_node is not None:
+            if current_node.key == value:
+                print("Yay found the node")
+                prev_node = current_node.prev_node
+                next_node = current_node.next_node
+
+                if prev_node is not None:
+                    prev_node.next_node = next_node
+
+                if next_node is not None:
+                    next_node.prev_node = prev_node
+
+                return
+
+            current_node = current_node.next_node
 
     def is_empty(self):
         if self._head is None:
             return True
 
-# if __name__ == '__main__':
-#     players = PlayerList()
-#     players.push('Player1')
-#     players.push('Player2')
-#     players.push('Player3')
-#     players.push('Player4')
-#     print(f"Before delete head: Head: {players._head._player}, Tail: {players._tail._player}")
-#     players.delete_head()
-#     print(f"After delete head: Head: {players._head._player}, Tail: {players._tail._player}")
-#     print("----")
-#     print(f"Before delete tail: Head: {players._head._player}, Tail: {players._tail._player}")
-#     players.delete_tail()
-#     print(f"After delete tail: Head: {players._head._player}, Tail: {players._tail._player}")
+    def display(self, forward: bool):
+        if self.is_empty():
+            raise ValueError
+
+        current_node = self._head if forward else self._tail
+
+        while current_node is not None:
+            print(current_node.player)
+            current_node = current_node.next_node if forward else current_node.prev_node
+
+if __name__ == '__main__':
+    players = PlayerList()
+    players.push(Player(unique_id=1, player_name="Player1"))
+    players.push(Player(unique_id=2, player_name="Player2"))
+    players.push(Player(unique_id=3, player_name="Player3"))
+    players.push(Player(unique_id=4, player_name="Player4"))
+    players.push(Player(unique_id=5, player_name="Player5"))
+    players.display(True)
+    print("---------------")
+    players.delete_key(4)
+    players.display(True)
 
