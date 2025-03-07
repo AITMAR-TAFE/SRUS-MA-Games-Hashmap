@@ -91,7 +91,6 @@ class PlayerList(object):
         # option 2 - Head is not the value
         while current_node is not None:
             if current_node.key == value:
-                print("Yay found the node")
                 prev_node = current_node.prev_node
                 next_node = current_node.next_node
 
@@ -118,6 +117,7 @@ class PlayerList(object):
         while current_node is not None:
             print(current_node.player)
             current_node = current_node.next_node if forward else current_node.prev_node
+
 
 if __name__ == '__main__':
     players = PlayerList()
