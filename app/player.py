@@ -11,5 +11,3 @@ class Player:
 
     def name(self):
         return self.player_name
-
-
