@@ -133,39 +133,39 @@ class PlayerList(object):
             current_node = current_node.next_node if forward else current_node.prev_node
 
 
-# if __name__ == '__main__':
-#     players = PlayerList()
-#     players.push(Player(unique_id=1, player_name="Player1"))
-#     players.push(Player(unique_id=2, player_name="Player2"))
-#     players.push(Player(unique_id=3, player_name="Player3"))
-#     players.push(Player(unique_id=4, player_name="Player4"))
-#     players.push(Player(unique_id=5, player_name="PUSH HEAD"))
-#
-#     print("After Push:")
-#     print("Length:", len(players))
-#     players.display(True)
-#     print("---------------")
-#
-#     players.delete_head()
-#     print("After Delete Head:")
-#     print("Length:", len(players))
-#     players.display(True)
-#     print("---------------")
-#
-#     players.push_tail(Player(unique_id=6, player_name="PUSH TAIL"))
-#     print("After Push Tail:")
-#     print("Length:", len(players))
-#     players.display(True)
-#     print("---------------")
-#
-#     players.delete_tail()
-#     print("After Delete Tail:")
-#     print("Length:", len(players))
-#     players.display(True)
-#     print("---------------")
-#
-#     players.delete_key(3)
-#     print("After Delete Key (ID 3):")
-#     print("Length:", len(players))
-#     players.display(True)
+if __name__ == '__main__':
+    players = PlayerList()
+    players.push(Player(unique_id=1, player_name="Player1"))
+    players.push(Player(unique_id=2, player_name="Player2"))
+    players.push(Player(unique_id=3, player_name="Player3"))
+    players.push(Player(unique_id=4, player_name="Player4"))
+    players.push(Player(unique_id=5, player_name="PUSH HEAD"))
+
+    print("After Push:")
+    print("Length:", len(players))
+    players.display(True)
+    print("---------------")
+
+    players.delete_head()
+    print("After Delete Head:")
+    print("Length:", len(players))
+    players.display(True)
+    print("---------------")
+
+    players.push_tail(Player(unique_id=6, player_name="PUSH TAIL"))
+    print("After Push Tail:")
+    print("Length:", len(players))
+    players.display(True)
+    print("---------------")
+
+    players.delete_tail()
+    print("After Delete Tail:")
+    print("Length:", len(players))
+    players.display(True)
+    print("---------------")
+
+    players.delete_key(3)
+    print("After Delete Key (ID 3):")
+    print("Length:", len(players))
+    players.display(True)
 
