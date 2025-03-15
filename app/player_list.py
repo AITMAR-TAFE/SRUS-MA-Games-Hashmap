@@ -26,6 +26,7 @@ class PlayerList(object):
             self._len += 1
             return
 
+
         # Insert at the front of the list
         new_node.next_node = self._head
         self._head.prev_node = new_node
