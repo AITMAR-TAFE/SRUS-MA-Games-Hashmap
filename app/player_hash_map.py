@@ -11,16 +11,19 @@ class PlayerHashMap:
         return [PlayerList() for _ in range(self.size)]
 
     def get_index(self, name):
+        """??? Kinda double hashing again ???"""
         hash_value = 0
         for char in name:
             hash_value += ord(char)
         return hash_value
 
-    def put(self, key, name):
-        hash_tabel_id = self.get_index(name)
+    def put(self, name):
+        player= Player(name)
+        key = player.uid()
+        hash_tabel_id = self.get_index(key)
         linked_list_id = hash_tabel_id % self.size
         bucket = self.hash_map[linked_list_id]
-        bucket.push(Player(key, name))
+        bucket.push(player)
 
 
     def get(self, key):
@@ -43,17 +46,17 @@ class PlayerHashMap:
 
 if __name__ == '__main__':
     player_map = PlayerHashMap()
-    player1 = Player("123", "Alice")
-    player2 = Player("234", "Bob")
-    player3 = Player("345", "Jessica")
-    player4 = Player("234", "Alice")
-    player5 = Player("345", "Alice")
+    player1 = Player("Alice")
+    player2 = Player("Bob")
+    player3 = Player("Jessica")
+    player4 = Player("Alice")
+    player5 = Player("Alice")
 
-    player_map.put(player1.uid(), player1.name())
-    player_map.put(player2.uid(), player2.name())
-    player_map.put(player3.uid(), player3.name())
-    player_map.put(player4.uid(), player4.name())
-    player_map.put(player5.uid(), player5.name())
+    player_map.put(player1.name())
+    player_map.put(player2.name())
+    player_map.put(player3.name())
+    player_map.put(player4.name())
+    player_map.put(player5.name())
 
     print("Printing the whole player map:")
     player_map.display()
