@@ -16,6 +16,13 @@ class PlayerList(object):
         """Returns the length of the player list."""
         return self._len
 
+    def __iter__(self):
+        """Make the PlayerList iterable."""
+        current_node = self._head
+        while current_node:
+            yield current_node.player  # Yield the player object at each node
+            current_node = current_node.next_node
+
     def push(self, value):
         """Add a player to the front of the list."""
         new_node = PlayerNode(value)
@@ -136,11 +143,11 @@ class PlayerList(object):
 
 if __name__ == '__main__':
     players = PlayerList()
-    players.push(Player(unique_id=1, player_name="Player1"))
-    players.push(Player(unique_id=2, player_name="Player2"))
-    players.push(Player(unique_id=3, player_name="Player3"))
-    players.push(Player(unique_id=4, player_name="Player4"))
-    players.push(Player(unique_id=5, player_name="PUSH HEAD"))
+    players.push(Player("player1", player_name="Player1"))
+    players.push(Player("player2", player_name="Player2"))
+    players.push(Player("player3", player_name="Player3"))
+    players.push(Player("player4", player_name="Player4"))
+    players.push(Player("player5", player_name="PUSH HEAD"))
 
     print("After Push:")
     print("Length:", len(players))
@@ -153,7 +160,7 @@ if __name__ == '__main__':
     players.display(True)
     print("---------------")
 
-    players.push_tail(Player(unique_id=6, player_name="PUSH TAIL"))
+    players.push_tail(Player("player6", player_name="PUSH TAIL"))
     print("After Push Tail:")
     print("Length:", len(players))
     players.display(True)

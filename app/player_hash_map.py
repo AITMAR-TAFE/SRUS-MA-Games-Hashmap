@@ -10,20 +10,26 @@ class PlayerHashMap:
     def create_table(self):
         return [PlayerList() for _ in range(self.size)]
 
-    def get_index(self, name):
-        """??? Kinda double hashing again ???"""
+    def get_index(self, key: str) -> int:
+        """Calculate index from characters in key, return int"""
         hash_value = 0
-        for char in name:
+        for char in key:
             hash_value += ord(char)
-        return hash_value
+        return hash_value % self.size
 
-    def put(self, name):
-        player= Player(name)
-        key = player.uid()
-        hash_tabel_id = self.get_index(key)
-        linked_list_id = hash_tabel_id % self.size
-        bucket = self.hash_map[linked_list_id]
-        bucket.push(player)
+    def put(self, key: str, name: str):
+        index = self.get_index(key)
+        player_list = self.hash_map[index]
+
+        # If player already exists, update name not uid
+        for player in player_list:
+            if player.uid() == key:
+                player.name = name
+                print("Player name changed")
+                return
+
+        new_player = Player(key, name)
+        player_list.push(new_player)
 
 
     def get(self, key):
@@ -46,17 +52,31 @@ class PlayerHashMap:
 
 if __name__ == '__main__':
     player_map = PlayerHashMap()
-    player1 = Player("Alice")
-    player2 = Player("Bob")
-    player3 = Player("Jessica")
-    player4 = Player("Alice")
-    player5 = Player("Alice")
-
-    player_map.put(player1.name())
-    player_map.put(player2.name())
-    player_map.put(player3.name())
-    player_map.put(player4.name())
-    player_map.put(player5.name())
+    player_map.put("player1", "Alice")
+    player_map.put("player2", "Bob")
+    player_map.put("player3", "Jessica")
+    player_map.put("player4", "Alice")
+    player_map.put("player5", "Alice")
+    player_map.put("player6", "Charlie")
+    player_map.put("player7", "David")
+    player_map.put("player8", "Eva")
+    player_map.put("player9", "Frank")
+    player_map.put("player10", "Grace")
+    player_map.put("player11", "Hannah")
+    player_map.put("player12", "Ivy")
+    player_map.put("player13", "Jack")
+    player_map.put("player14", "Karen")
+    player_map.put("player15", "Leo")
+    player_map.put("player16", "Mia")
+    player_map.put("player17", "Nina")
+    player_map.put("player18", "Oliver")
+    player_map.put("player19", "Paul")
+    player_map.put("player20", "Quinn")
+    player_map.put("player21", "Riley")
+    player_map.put("player22", "Sophia")
+    player_map.put("player23", "Tyler")
+    player_map.put("player24", "Uma")
+    player_map.put("player25", "Victor")
 
     print("Printing the whole player map:")
     player_map.display()
