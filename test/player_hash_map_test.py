@@ -39,24 +39,24 @@ class TestPlayerHashMap(unittest.TestCase):
 
     def test_collision_handling(self):
         """Test handling of a hash collision (same index for two different players)"""
-        self.player_map.put("player19", "Paul")
+        self.player_map.put("player14", "Paul")
 
-        index_player19 = self.player_map.get_index("player19")
+        index_player19 = self.player_map.get_index("player14")
         index_player3 = self.player_map.get_index("player3")
         self.assertEqual(index_player19, index_player3, "Collision not detected!")
 
         player_list = self.player_map.hash_map[index_player19]
         player_names = [player.name() for player in player_list]
-        self.assertIn("Paul", player_names, "Player 19 not found!")
+        self.assertIn("Paul", player_names, "Player 14 not found!")
         self.assertIn("Charlie", player_names, "Player 3 not found!")
 
     def test_remove_player(self):
         """Test removing a player by key."""
         self.player_map.remove("player1")
-        self.player_map.put("player17", "Alex")
+        self.player_map.put("player12", "Alex")
         # Check for players that are on same index
         index = self.player_map.get_index("player1")
-        index_2 = self.player_map.get_index("player17")
+        index_2 = self.player_map.get_index("player12")
         player_list_at_index = self.player_map.hash_map[index]
         # For debugging  print(f"Players at index {index}: {index_2}")
         player_name = [player.name() for player in player_list_at_index]
@@ -64,6 +64,9 @@ class TestPlayerHashMap(unittest.TestCase):
         # Check if remove is only deleting correct player
         self.assertNotIn("player1", player_uid)
         self.assertNotIn("Alice", player_name)
-        self.assertIn("player17", player_uid)
+        self.assertIn("player12", player_uid)
 
-
+    def test_size(self):
+        """Test size function, should return numbers of players"""
+        players = self.player_map.size()
+        self.assertEqual(players, 5)
