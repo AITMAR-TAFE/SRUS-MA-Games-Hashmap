@@ -18,6 +18,7 @@ class PlayerList(object):
 
     def __iter__(self):
         """Make the PlayerList iterable."""
+        """ NEED TO CHECK IF ACTUALLY NEED THIS OR NOT """
         current_node = self._head
         while current_node:
             yield current_node.player  # Yield the player object at each node

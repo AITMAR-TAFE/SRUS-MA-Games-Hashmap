@@ -1,5 +1,5 @@
-from player import Player
-from player_list import PlayerList
+from app.player import Player
+from app.player_list import PlayerList
 
 
 class PlayerHashMap:
@@ -18,6 +18,7 @@ class PlayerHashMap:
         return hash_value % self.size
 
     def put(self, key: str, name: str):
+        """ Add player """
         index = self.get_index(key)
         player_list = self.hash_map[index]
 
@@ -31,9 +32,16 @@ class PlayerHashMap:
         new_player = Player(key, name)
         player_list.push(new_player)
 
-
     def get(self, key):
-        return
+        """ Retrieve player by key """
+        index = self.get_index(key)
+        player_list_at_index = self.hash_map[index]
+
+        for player in player_list_at_index:
+            if player.uid() == key:
+                return player
+
+        return f"Player with key '{key}' not found."
 
     def remove(self, key):
         return
@@ -57,26 +65,7 @@ if __name__ == '__main__':
     player_map.put("player3", "Jessica")
     player_map.put("player4", "Alice")
     player_map.put("player5", "Alice")
-    player_map.put("player6", "Charlie")
-    player_map.put("player7", "David")
-    player_map.put("player8", "Eva")
-    player_map.put("player9", "Frank")
-    player_map.put("player10", "Grace")
-    player_map.put("player11", "Hannah")
-    player_map.put("player12", "Ivy")
-    player_map.put("player13", "Jack")
-    player_map.put("player14", "Karen")
-    player_map.put("player15", "Leo")
-    player_map.put("player16", "Mia")
-    player_map.put("player17", "Nina")
-    player_map.put("player18", "Oliver")
-    player_map.put("player19", "Paul")
-    player_map.put("player20", "Quinn")
-    player_map.put("player21", "Riley")
-    player_map.put("player22", "Sophia")
-    player_map.put("player23", "Tyler")
-    player_map.put("player24", "Uma")
-    player_map.put("player25", "Victor")
 
-    print("Printing the whole player map:")
-    player_map.display()
+    player_test = player_map.get("player2")
+    print("player2 is Bob")
+    print("test get function:", player_test.name())

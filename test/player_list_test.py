@@ -29,11 +29,11 @@ class TestPlayerList(unittest.TestCase):
         """Set up a test player list with sample players."""
         self.player_list = PlayerList()
         players = [
-            Player(unique_id=1, player_name="Player1"),
-            Player(unique_id=2, player_name="Player2"),
-            Player(unique_id=3, player_name="Player3"),
-            Player(unique_id=4, player_name="Player4"),
-            Player(unique_id=5, player_name="Player5")
+            Player("player1", "Alice"),
+            Player("player2", "Bob"),
+            Player("player3", "Charlie"),
+            Player("player4", "David"),
+            Player("player5", "Eva")
         ]
         for player in players:
             self.player_list.push(player)
@@ -49,34 +49,34 @@ class TestPlayerList(unittest.TestCase):
 
     def test_player_list_head_and_tail(self):
         """Test if head and tail are set correctly after initialization."""
-        self.assertEqual(self.player_list._head._player.name(), 'Player5')
-        self.assertEqual(self.player_list._tail._player.name(), 'Player1')
+        self.assertEqual(self.player_list._head._player.name(), 'Eva')
+        self.assertEqual(self.player_list._tail._player.name(), 'Alice')
 
     def test_player_list_push_tail(self):
         """Test the push_tail method to add a player to the end of the list."""
-        self.player_list.push_tail(Player(unique_id=6, player_name="PlayerPUSH"))
+        self.player_list.push_tail(Player("player6", "PlayerPUSH"))
         self.assertEqual(self.player_list._tail._player.name(), 'PlayerPUSH')
-        self.assertEqual(self.player_list._head._player.name(), 'Player5')
+        self.assertEqual(self.player_list._head._player.name(), 'Eva')
         self.assertEqual(len(self.player_list), 6)
 
     def test_player_list_delete_head(self):
         """Test deleting the head player from the list."""
         self.player_list.delete_head()
-        self.assertEqual(self.player_list._head._player.name(), 'Player4')
+        self.assertEqual(self.player_list._head._player.name(), 'David')
         self.assertEqual(len(self.player_list), 4)
 
     def test_player_list_delete_tail(self):
         """Test deleting the tail player from the list."""
         self.player_list.delete_tail()
-        self.assertEqual(self.player_list._tail._player.name(), 'Player2')
+        self.assertEqual(self.player_list._tail._player.name(), 'Bob')
         self.assertEqual(len(self.player_list), 4)
 
     def test_player_list_delete_key(self):
         """Test deleting a player by unique key."""
-        self.player_list.delete_key(4)
-        self.assertEqual(self.player_list._head._player.name(), "Player5")
-        self.assertEqual(self.player_list._tail._player.name(), "Player1")
-        self.assertEqual(self.player_list._head.next_node._player.name(), "Player3")
+        self.player_list.delete_key("player4")
+        self.assertEqual(self.player_list._head._player.name(), "Eva")
+        self.assertEqual(self.player_list._tail._player.name(), "Alice")
+        self.assertEqual(self.player_list._head.next_node._player.name(), "Charlie")
         self.assertEqual(len(self.player_list), 4)
 
     def test_player_list_display(self):
@@ -85,12 +85,11 @@ class TestPlayerList(unittest.TestCase):
             self.player_list.display(True)
 
         expected_output = [
-            "Player ID: 5, Name: Player5",
-            "Player ID: 4, Name: Player4",
-            "Player ID: 3, Name: Player3",
-            "Player ID: 2, Name: Player2",
-            "Player ID: 1, Name: Player1"
+            "Player ID: player5, Name: Eva",
+            "Player ID: player4, Name: David",
+            "Player ID: player3, Name: Charlie",
+            "Player ID: player2, Name: Bob",
+            "Player ID: player1, Name: Alice"
         ]
 
         self.assertEqual(output, expected_output)
-
