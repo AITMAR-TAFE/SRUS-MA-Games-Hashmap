@@ -44,7 +44,14 @@ class PlayerHashMap:
         return f"Player with key '{key}' not found."
 
     def remove(self, key):
-        return
+        """ Remove player by key """
+        index = self.get_index(key)
+        player_list_at_index = self.hash_map[index]
+
+        try:
+            player_list_at_index.delete_key(key)
+        except KeyError:
+            return f"Player with key '{key}' not found."
 
     def size(self):
         return
@@ -65,7 +72,27 @@ if __name__ == '__main__':
     player_map.put("player3", "Jessica")
     player_map.put("player4", "Alice")
     player_map.put("player5", "Alice")
+    player_map.put("player6", "Charlie")
+    player_map.put("player7", "David")
+    player_map.put("player8", "Eva")
+    player_map.put("player9", "Frank")
+    player_map.put("player10", "Grace")
+    player_map.put("player11", "Hannah")
+    player_map.put("player12", "Ivy")
+    player_map.put("player13", "Jack")
+    player_map.put("player14", "Karen")
+    player_map.put("player15", "Leo")
+    player_map.put("player16", "Megan")
+    player_map.put("player17", "Nina")
+    player_map.put("player18", "Oliver")
+    player_map.put("player19", "Paul")
 
     player_test = player_map.get("player2")
     print("player2 is Bob")
     print("test get function:", player_test.name())
+
+    print("Players before removing player2 : ")
+    print(player_map.display(True))
+    player_test_2 = player_map.remove("player332")
+    print("Players after removing player2 : ")
+    print(player_map.display(True))

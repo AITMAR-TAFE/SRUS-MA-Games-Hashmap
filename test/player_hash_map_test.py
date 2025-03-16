@@ -49,3 +49,21 @@ class TestPlayerHashMap(unittest.TestCase):
         player_names = [player.name() for player in player_list]
         self.assertIn("Paul", player_names, "Player 19 not found!")
         self.assertIn("Charlie", player_names, "Player 3 not found!")
+
+    def test_remove_player(self):
+        """Test removing a player by key."""
+        self.player_map.remove("player1")
+        self.player_map.put("player17", "Alex")
+        # Check for players that are on same index
+        index = self.player_map.get_index("player1")
+        index_2 = self.player_map.get_index("player17")
+        player_list_at_index = self.player_map.hash_map[index]
+        # For debugging  print(f"Players at index {index}: {index_2}")
+        player_name = [player.name() for player in player_list_at_index]
+        player_uid = [player.uid() for player in player_list_at_index]
+        # Check if remove is only deleting correct player
+        self.assertNotIn("player1", player_uid)
+        self.assertNotIn("Alice", player_name)
+        self.assertIn("player17", player_uid)
+
+
