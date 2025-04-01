@@ -1,4 +1,4 @@
-@set "VIRTUAL_ENV=C:\Users\AITMAR\source\repos\SRUS-MA-Games\.venv"
+@set "VIRTUAL_ENV=C:\Users\AITMAR\source\repos\SRUS-MA-Games-Hashmap\.venv"
 
 @set "VIRTUAL_ENV_PROMPT="
 @if NOT DEFINED VIRTUAL_ENV_PROMPT (
