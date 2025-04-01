@@ -42,14 +42,8 @@ class TestPlayer(unittest.TestCase):
         self.assertListEqual(sorted_players, sorted_players_default)
 
     def test_sorting_sorted_players(self):
-        # players = [Player(unique_id=f"{i:03}", player_name=f"Test player {i}", player_score=i) for i in range(1000, 0, -1)]
-
-        players = [Player(unique_id='03', player_name="Charlie", player_score=15),
-                                   Player(unique_id='01', player_name="Alice", player_score=15),
-                                   Player(unique_id='02', player_name="Bob", player_score=5)]
+        players = [Player(unique_id=f"{i:03}", player_name=f"Test player {i}", player_score=i) for i in range(1000, 0, -1)]
 
         sorted_players = Player.sort(players)
-        print(players)
-        print(sorted_players)
 
         self.assertListEqual(players, sorted_players)

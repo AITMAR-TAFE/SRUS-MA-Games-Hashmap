@@ -215,8 +215,10 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
->  When we half it each time, we get log(n) , we need to scan whole list first O(n)
-> O(n log n)
+>"n" stands for how many items we have in list and the more we have the more it takes time to go throught. 
+> This algorithm spreads items in the list between left and right, so it takes O(log n) and the goes through each element in the list, making it O(n log n)
+>
+
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
