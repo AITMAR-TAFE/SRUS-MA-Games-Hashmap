@@ -9,6 +9,12 @@ class Player:
     def __str__(self):
         return f"Player ID: {self.uid}, Name: {self.name}"
 
+    def __gt__(self, other):
+        return self.score > other.score
+
+    def __eq__(self, other):
+        return self.score == other.score
+
     def uid(self):
         return self._unique_id
 
@@ -32,4 +38,23 @@ class Player:
             raise ValueError
 
         self._player_score = value
+
+    @classmethod
+    def sort(cls, arr: list) -> list:
+        if len(arr) <= 1:
+            return arr
+
+        middle = int(len(arr)/2)
+        pivot = arr[middle]
+        left = []
+        right = []
+        middle = []
+        for x in arr:
+            if x == pivot:
+                middle.append(x)
+            elif x > pivot:
+                left.append(x)
+            else:
+                right.append(x)
+        return cls.sort(left) + cls.sort(right)
 

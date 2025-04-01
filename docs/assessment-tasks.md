@@ -92,7 +92,7 @@ TypeError: '<' not supported between instances of 'Player' and 'Player'
 
 The tests checks that calling sorted on a list of players will sort them by score, what is the **only** magic method that must be implemented in the player class for the `sorted` function to succeed?
 
-> Answer Here
+> I need to implement method so that it overrides default sorted function to only sort players according to player score
 
 #### 4.3.2. Task: Implement the magic method in the Player class
 
@@ -111,7 +111,19 @@ def test_players_can_be_compared_by_score(self):
 Run the test and confirm that your error resembles the previous error
 
 ```text
-INSERT ERROR OUTPUT HERE
+Error
+Traceback (most recent call last):
+  File "C:\Users\AITMAR\source\repos\SRUS-MA-Games-Hashmap\test\test_player.py", line 24, in test_players_can_be_compared_by_score
+    self.assertTrue(alice > bob)
+                    ^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'Player' and 'Player'
+
+
+
+Ran 1 test in 0.005s
+
+FAILED (errors=1)
+
 ```
 
 Implement the appropriate magic method in the Player class and ensure you pass this test (and only this test!).
@@ -129,12 +141,46 @@ Implement the appropriate magic method in the Player class and ensure you pass t
 Rerun `test_sort_players` does the test pass? If not, include the output below:
 
 ```text
-Your output here
+Failure
+Traceback (most recent call last):
+  File "C:\Users\AITMAR\source\repos\SRUS-MA-Games-Hashmap\test\test_player.py", line 16, in test_sort_players
+    self.assertListEqual(sorted_players, manually_sorted_players)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [<app[33 chars]76A15DCA50>, <app.player.Player object at 0x00[61 chars]B90>] != [<app[33 chars]76A152FE10>, <app.player.Player object at 0x00[61 chars]C70>]
+
+First differing element 0:
+<app.player.Player object at 0x00000276A15DCA50>
+<app.player.Player object at 0x00000276A152FE10>
+
+- [<app.player.Player object at 0x00000276A15DCA50>,
+?                                            ^^^^
+
++ [<app.player.Player object at 0x00000276A152FE10>,
+?                                            ^^^^
+
+-  <app.player.Player object at 0x00000276A15F42F0>,
+?                                             ^ ^
+
++  <app.player.Player object at 0x00000276A15F82B0>,
+?                                             ^ ^
+
+-  <app.player.Player object at 0x00000276A15DCB90>]
+?                                              ^^
+
++  <app.player.Player object at 0x00000276A15ADC70>]
+?                                            +  ^
+
+
+
+
+Ran 1 test in 0.006s
+
+FAILED (failures=1)
 ```
 
 Why did the test fail (note: if it doesn't fail, it means there is something you have already done before you were asked to - you need to figure out what that is!)?
 
-> Answer here
+> Because it compares objects not the actual values
 
 Add the necessary code to the Player class to ensure that the `test_sort_players` test passes.
 
@@ -169,7 +215,8 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
-> Answer here
+>  When we half it each time, we get log(n) , we need to scan whole list first O(n)
+> O(n log n)
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
@@ -184,7 +231,19 @@ Add a separate test case to `test_player.py` to test your custom sorting algorit
 Include your code below:
 
 ```python
-# YOUR CUSTOM Sorting here
+   @classmethod
+    def sort(cls, arr: list) -> list:
+        if len(arr) <= 1:
+            return arr
+        pivot = arr[0]
+        left = []
+        right = []
+        for x in arr[1:]:
+            if x > pivot:
+                left.append(x)
+            else:
+                right.append(x)
+        return cls.sort(left) + [pivot] + cls.sort(right)
 ```
 
 #### 5.2.3. Success criteria
@@ -213,7 +272,13 @@ Using the code above as a starting point, create a test case to test your custom
 Include your test case below:
 
 ```python
+    def test_players_custom_sorting_algorithm_at_scale(self):
+        players = [Player(unique_id=f"{i:03}", player_name=f"Test player {i}", player_score=random.randint(0,1000)) for i in range(1000)]
 
+        sorted_players = Player.sort(players)
+
+        sorted_players_default = sorted(players, reverse=True)
+        self.assertListEqual(sorted_players, sorted_players_default)
 ```
 
 #### 5.3.2. Success criteria
@@ -233,20 +298,55 @@ Create a test case that tries to sort 1000 players that are already sorted.
 If you get a failure, include the failure below:
 
 ```text
-YOUR FAILURE HERE
+Error
+Traceback (most recent call last):
+  File "C:\Users\AITMAR\source\repos\SRUS-MA-Games-Hashmap\test\test_player.py", line 47, in test_sorting_sorted_players
+    sorted_players = Player.sort(players)
+  File "C:\Users\AITMAR\source\repos\SRUS-MA-Games-Hashmap\app\player.py", line 54, in sort
+    return cls.sort(left) + [pivot] + cls.sort(right)
+                                      ~~~~~~~~^^^^^^^
+  File "C:\Users\AITMAR\source\repos\SRUS-MA-Games-Hashmap\app\player.py", line 54, in sort
+    return cls.sort(left) + [pivot] + cls.sort(right)
+                                      ~~~~~~~~^^^^^^^
+  File "C:\Users\AITMAR\source\repos\SRUS-MA-Games-Hashmap\app\player.py", line 54, in sort
+    return cls.sort(left) + [pivot] + cls.sort(right)
+                                      ~~~~~~~~^^^^^^^
+  [Previous line repeated 982 more times]
+  File "C:\Users\AITMAR\source\repos\SRUS-MA-Games-Hashmap\app\player.py", line 50, in sort
+    if x > pivot:
+       ^^^^^^^^^
+  File "C:\Users\AITMAR\source\repos\SRUS-MA-Games-Hashmap\app\player.py", line 13, in __gt__
+    return self.score > other.score
+           ^^^^^^^^^^
+RecursionError: maximum recursion depth exceeded
 ```
 
 Provide a reason why this test failed (if you got recursion errors, you need to explain **why** they occurred).
 
 If your implementation did not fail, you must explain what changes you made to the original algorithm given by the senior developer to ensure that it did not fail.
 
-> Answer here
+> The allocation of memory (stack) is called everytime (so 1000 times) in this situation, and python will stop my program so that i dont override memory
+> So to fix this, even if list is sorted, i want the elements to be arranged more evenly between left and right, reducing the chance of recursion error.
 
 Propose a fix to your sorting algorithm that fixes this issue.
 
 ```python
-# YOUR FIX HERE
-# Highlight what the fix was
+    @classmethod
+    def sort(cls, arr: list) -> list:
+        if len(arr) <= 1:
+            return arr
+
+        middle = int(len(arr)/2)
+        pivot = arr[middle]   # THIS IS WHERE IT FIXES THE PROBLEM
+        left = []
+        right = []
+
+        for x in arr[0:]:
+            if x > pivot:
+                left.append(x)
+            else:
+                right.append(x)
+        return cls.sort(left) + cls.sort(right)
 ```
 
 #### 5.3.5. Success criteria
