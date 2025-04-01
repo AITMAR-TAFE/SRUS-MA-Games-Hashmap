@@ -71,7 +71,15 @@ def test_sort_players(self):
 What was the outcome of running the above unit test, copy paste the output **for just this particular test** below:
 
 ```text
-Your output here
+Ran 1 test in 0.028s
+
+FAILED (errors=1)
+
+Error
+Traceback (most recent call last):
+  File "C:\Users\AITMAR\source\repos\SRUS-MA-Games-Hashmap\test\test_player.py", line 11, in test_sort_players
+    sorted_players = sorted(players)
+TypeError: '<' not supported between instances of 'Player' and 'Player'
 ```
 
 ### 4.3. Success criteria

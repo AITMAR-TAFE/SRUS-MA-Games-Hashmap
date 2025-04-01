@@ -1,9 +1,10 @@
 
 
 class Player:
-    def __init__(self, unique_id: str, player_name: str):
+    def __init__(self, unique_id: str, player_name: str, player_score: int):
         self._unique_id = unique_id
         self._player_name = player_name
+        self._player_score = player_score
 
     def __str__(self):
         return f"Player ID: {self.uid}, Name: {self.name}"
@@ -20,4 +21,15 @@ class Player:
 
     def name(self):
         return self._player_name
+
+    @property
+    def score(self):
+        return self._player_score
+
+    @score.setter
+    def score(self, value):
+        if value < 0:
+            raise ValueError
+
+        self._player_score = value
 
