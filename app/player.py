@@ -9,6 +9,9 @@ class Player:
     def __str__(self):
         return f"Player ID: {self.uid}, Name: {self.name}"
 
+    def __repr__(self):
+        return f"Unigue ID:{self._unique_id}, Name:{self._player_name}, Score:{self._player_score}"
+
     def __gt__(self, other):
         return self.score > other.score
 
@@ -49,6 +52,7 @@ class Player:
         left = []
         right = []
         middle = []
+
         for x in arr:
             if x == pivot:
                 middle.append(x)
@@ -56,5 +60,5 @@ class Player:
                 left.append(x)
             else:
                 right.append(x)
-        return cls.sort(left) + cls.sort(right)
+        return cls.sort(left) + middle + cls.sort(right)
 
