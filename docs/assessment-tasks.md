@@ -361,7 +361,7 @@ Propose a fix to your sorting algorithm that fixes this issue.
 Complete the following snippet before you submit:
 
 ```text
-I, <name and student number>, completed this work in class <room number>, on <date>, under the supervision of <assessor's name>.
+I, Martina Ait 20114816, completed this work in class 306, on 1/04/2025, under the supervision of RAF.
 ```
 
 Or (if not completed in class):
