@@ -43,10 +43,7 @@ class PlayerHashMap:
         index = self.get_index(key)
         player_list_at_index = self.hash_map[index]
 
-        try:
-            player_list_at_index.delete_key(key)
-        except KeyError:
-            return f"Player with key '{key}' not found."
+        player_list_at_index.delete_key(key)
 
     def size(self):
         """ Return number of players in the hash map """
