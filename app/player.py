@@ -21,6 +21,7 @@ class Player:
     def __hash__(self):
         return hash((self._unique_id, self._player_name, self._player_score))
 
+    @property
     def uid(self):
         return self._unique_id
 
