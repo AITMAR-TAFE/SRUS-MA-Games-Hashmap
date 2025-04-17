@@ -46,17 +46,17 @@ class Player:
         self._player_score = value
 
     @classmethod
-    def sort(cls, arr: list) -> list:
-        if len(arr) <= 1:
-            return arr
+    def sort(cls, players: list) -> list:
+        if len(players) <= 1:
+            return players
 
-        middle = int(len(arr)/2)
-        pivot = arr[middle]
+        middle = int(len(players)/2)
+        pivot = players[middle]
         left = []
         right = []
         middle = []
 
-        for x in arr:
+        for x in players:
             if x == pivot:
                 middle.append(x)
             elif x > pivot:
