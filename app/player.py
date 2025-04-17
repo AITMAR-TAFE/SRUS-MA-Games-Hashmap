@@ -7,7 +7,7 @@ class Player:
         self._player_score = player_score
 
     def __str__(self):
-        return f"Player ID: {self.uid}, Name: {self.name}"
+        return f"Player ID: {self.uid}, Name: {self.name}, Score: {self.score}"
 
     def __repr__(self):
         return f"Unigue ID:{self._unique_id}, Name:{self._player_name}, Score:{self._player_score}"
@@ -32,6 +32,7 @@ class Player:
             hash_value += ord(char)
         return hash_value % size
 
+    @property
     def name(self):
         return self._player_name
 

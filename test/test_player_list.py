@@ -29,11 +29,11 @@ class TestPlayerList(unittest.TestCase):
         """Set up a test player list with sample players."""
         self.player_list = PlayerList()
         players = [
-            Player("player1", "Alice"),
-            Player("player2", "Bob"),
-            Player("player3", "Charlie"),
-            Player("player4", "David"),
-            Player("player5", "Eva")
+            Player("player1", "Alice", 10),
+            Player("player2", "Bob", 20),
+            Player("player3", "Charlie", 30),
+            Player("player4", "David", 40),
+            Player("player5", "Eva", 50)
         ]
         for player in players:
             self.player_list.push(player)
@@ -85,11 +85,11 @@ class TestPlayerList(unittest.TestCase):
             self.player_list.display(True)
 
         expected_output = [
-            "Player ID: player5, Name: Eva",
-            "Player ID: player4, Name: David",
-            "Player ID: player3, Name: Charlie",
-            "Player ID: player2, Name: Bob",
-            "Player ID: player1, Name: Alice"
+            "Player ID: player5, Name: Eva, Score: 50",
+            "Player ID: player4, Name: David, Score: 40",
+            "Player ID: player3, Name: Charlie, Score: 30",
+            "Player ID: player2, Name: Bob, Score: 20",
+            "Player ID: player1, Name: Alice, Score: 10"
         ]
 
         self.assertEqual(output, expected_output)
