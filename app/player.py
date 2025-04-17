@@ -18,6 +18,9 @@ class Player:
     def __eq__(self, other):
         return self.score == other.score
 
+    def __hash__(self):
+        return hash((self._unique_id, self._player_name, self._player_score))
+
     def uid(self):
         return self._unique_id
 
