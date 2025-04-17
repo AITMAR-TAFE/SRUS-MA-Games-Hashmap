@@ -41,7 +41,7 @@ class Player:
     @score.setter
     def score(self, value):
         if value < 0:
-            raise ValueError
+            raise ValueError("Invalid score: must be a positive number.")
 
         self._player_score = value
 
