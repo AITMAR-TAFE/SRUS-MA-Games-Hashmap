@@ -12,8 +12,8 @@ class Player:
     def __repr__(self):
         return f"Unigue ID:{self._unique_id}, Name:{self._player_name}, Score:{self._player_score}"
 
-    def __gt__(self, other):
-        return self.score > other.score
+    def __lt__(self, other):
+        return self.score < other.score
 
     def __eq__(self, other):
         return self.score == other.score

@@ -92,7 +92,8 @@ TypeError: '<' not supported between instances of 'Player' and 'Player'
 
 The tests checks that calling sorted on a list of players will sort them by score, what is the **only** magic method that must be implemented in the player class for the `sorted` function to succeed?
 
-> I need to implement method so that it overrides default sorted function to only sort players according to player score
+> The only magic method that must be implemented in the Player class for the sorted() function to succeed in sorting by score is __lt__ .
+> This method is "less than", used for Pythons sorted() function to compare objects and set them in correct order. 
 
 #### 4.3.2. Task: Implement the magic method in the Player class
 
@@ -180,7 +181,7 @@ FAILED (failures=1)
 
 Why did the test fail (note: if it doesn't fail, it means there is something you have already done before you were asked to - you need to figure out what that is!)?
 
-> Because it compares objects not the actual values
+> The test failed because assertListEqual compares the memory addresses of the Player objects, not their values. To fix this, I implement the __eq__ method in the Player class to compare the object values (score) rather than their memory locations.
 
 Add the necessary code to the Player class to ensure that the `test_sort_players` test passes.
 
@@ -215,8 +216,8 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
->"n" stands for how many items we have in list and the more we have the more it takes time to go throught. 
-> This algorithm spreads items in the list between left and right, so it takes O(log n) and the goes through each element in the list, making it O(n log n)
+>Time Complexity: The algorithm divides the list into smaller parts, which takes time proportional to O(log n). Then, it goes through all the items to sort them, which takes O(n) time. So, the total time it takes is O(n log n). 
+> Space Complexity: The space complexity is O(n) because the algorithm needs extra space to store temporary lists while sorting, as well as memory for keeping track of the recursive calls.
 >
 
 
@@ -327,8 +328,9 @@ Provide a reason why this test failed (if you got recursion errors, you need to 
 
 If your implementation did not fail, you must explain what changes you made to the original algorithm given by the senior developer to ensure that it did not fail.
 
-> The allocation of memory (stack) is called everytime (so 1000 times) in this situation, and python will stop my program so that i dont override memory
-> So to fix this, even if list is sorted, i want the elements to be arranged more evenly between left and right, reducing the chance of recursion error.
+> The allocation of memory (stack) is called every time a function is invoked (which happens recursively). Each time a function is called, a new frame is added to the stack, and when the function returns, the frame is removed. With deep recursion,  as in this case with 1000 elements, Python stops the programme to prevent memory overflow by exceeding the recursion limit. 
+> The original algorithm caused elements to be unevenly distribut when the list was sorted because the pivot was chosen from the middle of the list. In a sorted list, this results in the one side of the partition being much larger than the other, causing deeper recursion. 
+> To fix this, I modified the partitioning logic so that the list is split more evenly, even if it is already sorted. This reduces the likelihood of exceeding the recursion depth. However, because it's still a recursive algorithm, we can't fully remove the chance of a recursion error.
 
 Propose a fix to your sorting algorithm that fixes this issue.
 
