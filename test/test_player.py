@@ -1,9 +1,18 @@
+import unittest
 from app.player import Player
 import random
-import unittest
 
 
 class TestPlayer(unittest.TestCase):
+    def setUp(self):
+        self.test_player = Player("TestPlayerID","TestPlayerName","PlayerScore")
+
+    def test_player_name(self):
+        self.assertEqual(self.test_player.name(), "TestPlayerName")
+
+    def test_player_unique_id(self):
+        self.assertEqual(self.test_player.uid(), "TestPlayerID")
+
     def test_sort_players(self):
         players = [Player(unique_id='01',player_name="Alice", player_score=10), Player(unique_id='02',player_name="Bob", player_score=5), Player(unique_id='03',player_name = "Charlie", player_score=15)]
         # note: ensure initialization code is valid for **your** implementation
