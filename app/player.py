@@ -22,11 +22,11 @@ class Player:
         return self._unique_id
 
     @classmethod
-    def hash(cls, key: str) -> int:
+    def hash(cls, key: str, size: int) -> int:
         hash_value = 0
         for char in key:
             hash_value += ord(char)
-        return hash_value
+        return hash_value % size
 
     def name(self):
         return self._player_name

@@ -12,7 +12,7 @@ class PlayerHashMap:
 
     def get_index(self, key: str) -> int:
         """Calculate index key, return int"""
-        return Player.hash(key) % self.map_size
+        return Player.hash(key, self.map_size)
 
     def put(self, key: str, name: str):
         """ Add new player """
