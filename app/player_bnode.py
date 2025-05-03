@@ -23,3 +23,9 @@ class PlayerBNode:
     @right.setter
     def right(self, node):
         self._right = node
+
+    def __str__(self):
+        return f"Node({self._player})"
+
+    def __repr__(self):
+        return self.__str__()

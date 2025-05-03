@@ -1,5 +1,5 @@
-from player import Player
-from player_bnode import PlayerBNode
+from app.player import Player
+from app.player_bnode import PlayerBNode
 
 
 class PlayerBST:
@@ -45,16 +45,16 @@ class PlayerBST:
             self.print_for_testing(node.right)
 
 
-player1 = Player("A1", "Alice", 100)
-player2 = Player("B2", "Bob", 150)
-player3 = Player("C3", "Charlie", 120)
-player4 = Player("A1", "Alice", 200)
-
-player_bst = PlayerBST()
-player_bst.insert(player1)
-player_bst.insert(player2)
-player_bst.insert(player3)
-player_bst.insert(player4)
-
-print("--TESTING--")
-player_bst.print_for_testing(player_bst.root)
+# player1 = Player("A1", "Alice", 100)
+# player2 = Player("B2", "Bob", 150)
+# player3 = Player("C3", "Charlie", 120)
+# player4 = Player("A1", "Alice", 200)
+#
+# player_bst = PlayerBST()
+# player_bst.insert(player1)
+# player_bst.insert(player2)
+# player_bst.insert(player3)
+# player_bst.insert(player4)
+#
+# print("--TESTING--")
+# player_bst.print_for_testing(player_bst.root)
