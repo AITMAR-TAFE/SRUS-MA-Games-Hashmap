@@ -39,8 +39,9 @@ class PlayerBST:
                     break
 
     def search(self, name):
-        return
-    
+        if self.root is None or self.root.player.name == name:
+            return self.root
+
     def print_for_testing(self, node):
         if node:
             self.print_for_testing(node.left)

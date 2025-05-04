@@ -41,7 +41,12 @@ class TestPlayerBST(unittest.TestCase):
         self.assertEqual(self.bst.root.player.name, "Alice")
         self.assertEqual(self.bst.root.player.score, 300)
 
+    def test_search_root_is_none(self):
+        empty_tree = PlayerBST()
+        result = empty_tree.search("Alice")
+        self.assertIsNone(result)
 
-if __name__ == '__main__':
-    import unittest
-    unittest.main()
+    def test_search_root_matches_name(self):
+        self.bst.insert(self.player1)
+        result = self.bst.search("Alice")
+        self.assertEqual(result.player.name, "Alice")

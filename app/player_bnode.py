@@ -1,5 +1,5 @@
 class PlayerBNode:
-    def __init__(self,player):
+    def __init__(self, player):
         self._player = player
         self._left = None
         self._right = None
