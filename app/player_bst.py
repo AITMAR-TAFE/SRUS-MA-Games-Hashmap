@@ -38,6 +38,9 @@ class PlayerBST:
                     node._player = player
                     break
 
+    def search(self, name):
+        return
+    
     def print_for_testing(self, node):
         if node:
             self.print_for_testing(node.left)
@@ -45,16 +48,3 @@ class PlayerBST:
             self.print_for_testing(node.right)
 
 
-# player1 = Player("A1", "Alice", 100)
-# player2 = Player("B2", "Bob", 150)
-# player3 = Player("C3", "Charlie", 120)
-# player4 = Player("A1", "Alice", 200)
-#
-# player_bst = PlayerBST()
-# player_bst.insert(player1)
-# player_bst.insert(player2)
-# player_bst.insert(player3)
-# player_bst.insert(player4)
-#
-# print("--TESTING--")
-# player_bst.print_for_testing(player_bst.root)
