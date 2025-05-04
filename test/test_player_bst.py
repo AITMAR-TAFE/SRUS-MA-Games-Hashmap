@@ -50,3 +50,19 @@ class TestPlayerBST(unittest.TestCase):
         self.bst.insert(self.player1)
         result = self.bst.search("Alice")
         self.assertEqual(result.player.name, "Alice")
+
+    def test_search_works(self):
+        self.bst.insert(self.player2)
+        self.bst.insert(self.player1)
+        self.bst.insert(self.player4)
+        self.bst.insert(self.player5)
+        self.bst.insert(self.player6)
+
+        result = self.bst.search("Alice")
+        self.assertEqual(result.player.name, "Alice")
+
+        result = self.bst.search("Bob")
+        self.assertEqual(result.player.name, "Bob")
+
+        result = self.bst.search("David")
+        self.assertIsNone(result)   # David is NOT in the tree, so result should be None
