@@ -82,3 +82,20 @@ class TestPlayerBST(unittest.TestCase):
                           Player(unique_id='ID4', player_name='Fiona', player_score=90)]
         print("This is result", result)
         self.assertEqual(correct_answer,result)
+
+    def test_balanced_bst_structure(self):
+        self.bst.insert(self.player2)
+        self.bst.insert(self.player1)
+        self.bst.insert(self.player3)
+        self.bst.insert(self.player4)
+        self.bst.insert(self.player5)
+        self.bst.insert(self.player6)
+        self.bst.insert(self.player7)
+        sorted_list = self.bst.create_sorted_list(self.bst.root)
+        self.bst.balanced_bst(sorted_list)
+
+        # After balancing, the root should be the middle element: "Charlie"
+        self.assertEqual(self.bst.root.player.name, "Charlie")
+        self.assertEqual(self.bst.root.left.player.name, "Alice")
+        self.assertEqual(self.bst.root.right.player.name, "Fiona")
+

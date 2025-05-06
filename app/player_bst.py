@@ -58,7 +58,7 @@ class PlayerBST:
             node = PlayerBNode(my_list[middle_element])
             node.left = build_recursively(my_list[:middle_element])
             node.right = build_recursively(my_list[middle_element + 1:])
-            print("The middle:", node," The left:", node.left, " The right:", node.right)
+            # print("The middle:", node," The left:", node.left, " The right:", node.right)
             return node
 
         self.root = build_recursively(sorted_list)
