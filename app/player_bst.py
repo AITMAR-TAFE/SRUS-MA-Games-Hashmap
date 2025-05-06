@@ -50,8 +50,40 @@ class PlayerBST:
             else:
                 node = node.right
 
+    def balanced_bst(self, sorted_list):
+        return 1
+
+    def create_sorted_list(self, node, in_order_list=None):
+        if in_order_list is None:
+            in_order_list = []
+
+        if node:
+            self.create_sorted_list(node.left, in_order_list)
+            in_order_list.append(node.player)
+            self.create_sorted_list(node.right, in_order_list)
+
+        if node == self._root:
+            return in_order_list
+
     def print_for_testing(self, node):
         if node:
             self.print_for_testing(node.left)
             print(node.player)
             self.print_for_testing(node.right)
+
+
+tree = PlayerBST()
+
+player1 = Player("ID1", "Alice", 100)
+player2 = Player("ID2", "Bob", 150)
+player3 = Player("ID3", "Charlie", 200)
+player4 = Player("ID4", "Fiona", 90)
+player5 = Player("ID5", "Elena", 180)
+
+tree.insert(player4)
+tree.insert(player2)
+tree.insert(player5)
+tree.insert(player3)
+tree.insert(player1)
+
+print(tree.create_sorted_list(tree.root))
