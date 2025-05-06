@@ -66,3 +66,19 @@ class TestPlayerBST(unittest.TestCase):
 
         result = self.bst.search("David")
         self.assertIsNone(result)   # David is NOT in the tree, so result should be None
+
+    def test_create_sorted_list(self):
+        self.bst.insert(self.player2)
+        self.bst.insert(self.player1)
+        self.bst.insert(self.player4)
+        self.bst.insert(self.player5)
+        self.bst.insert(self.player6)
+
+        result = self.bst.create_sorted_list(self.bst.root)
+        correct_answer = [Player(unique_id='ID6', player_name='Aadila', player_score=120),
+                          Player(unique_id='ID1', player_name='Alice', player_score=100),
+                          Player(unique_id='ID2', player_name='Bob', player_score=150),
+                          Player(unique_id='ID5', player_name='Elena', player_score=180),
+                          Player(unique_id='ID4', player_name='Fiona', player_score=90)]
+        print("This is result", result)
+        self.assertEqual(correct_answer,result)
