@@ -39,16 +39,19 @@ class PlayerBST:
                     break
 
     def search(self, name):
+        # steps = 0         For steps testing purposes
         node = self.root
         while node:
+            # steps += 1
             if node is None or node.player.name == name:
-                return node
+                return node #, steps
 
             if name < node.player.name:
                 node = node.left
 
             else:
                 node = node.right
+        #return None, steps
 
     def balanced_bst(self, sorted_list):
         def build_recursively(my_list):
@@ -90,7 +93,6 @@ class PlayerBST:
 # player4 = Player("ID4", "Fiona", 90)
 # player5 = Player("ID5", "Elena", 180)
 # player6 = Player("ID6", "Aadila", 120)  # Should be before Alice
-# player7 = Player("ID7", "Xavier", 300)
 #
 # tree.insert(player4)
 # tree.insert(player2)
@@ -98,7 +100,13 @@ class PlayerBST:
 # tree.insert(player3)
 # tree.insert(player1)
 # tree.insert(player6)
-# tree.insert(player7)
 #
 # sorted_players = tree.create_sorted_list(tree.root)
 # tree.balanced_bst(sorted_players)
+#
+# player, steps = tree.search("Bob")
+# if player:
+#     print(f"Player found: {player}")
+#     print(f"Steps taken: {steps}")
+# else:
+#     print("Player not found")

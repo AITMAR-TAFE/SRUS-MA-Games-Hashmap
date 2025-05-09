@@ -18,3 +18,8 @@ Step 3 – Knowledge Question (20-60 words)
     My answer: A balanced BST is when the left and right subtrees of all nodes are equal in height.
     It should grow evenly from both sides like a family tree.
     A Binary Search Tree is considered balanced if the height of the tree is O(Log n), where n is the number of nodes.
+
+Step 8 – Knowledge Question
+    With the newly balanced BST, how many steps does it take at most to find an existing item in the
+    search tree?
+    My answer:

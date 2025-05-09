@@ -80,8 +80,7 @@ class TestPlayerBST(unittest.TestCase):
                           Player(unique_id='ID2', player_name='Bob', player_score=150),
                           Player(unique_id='ID5', player_name='Elena', player_score=180),
                           Player(unique_id='ID4', player_name='Fiona', player_score=90)]
-        print("This is result", result)
-        self.assertEqual(correct_answer,result)
+        self.assertEqual(correct_answer, result)
 
     def test_balanced_bst_structure(self):
         self.bst.insert(self.player2)
