@@ -82,23 +82,23 @@ class PlayerBST:
             self.print_for_testing(node.right)
 
 
-tree = PlayerBST()
-
-player1 = Player("ID1", "Alice", 100)
-player2 = Player("ID2", "Bob", 150)
-player3 = Player("ID3", "Charlie", 200)
-player4 = Player("ID4", "Fiona", 90)
-player5 = Player("ID5", "Elena", 180)
-player6 = Player("ID6", "Aadila", 120)  # Should be before Alice
-player7 = Player("ID7", "Xavier", 300)
-
-tree.insert(player4)
-tree.insert(player2)
-tree.insert(player5)
-tree.insert(player3)
-tree.insert(player1)
-tree.insert(player6)
-tree.insert(player7)
-
-sorted_players = tree.create_sorted_list(tree.root)
-tree.balanced_bst(sorted_players)
+# tree = PlayerBST()
+#
+# player1 = Player("ID1", "Alice", 100)
+# player2 = Player("ID2", "Bob", 150)
+# player3 = Player("ID3", "Charlie", 200)
+# player4 = Player("ID4", "Fiona", 90)
+# player5 = Player("ID5", "Elena", 180)
+# player6 = Player("ID6", "Aadila", 120)  # Should be before Alice
+# player7 = Player("ID7", "Xavier", 300)
+#
+# tree.insert(player4)
+# tree.insert(player2)
+# tree.insert(player5)
+# tree.insert(player3)
+# tree.insert(player1)
+# tree.insert(player6)
+# tree.insert(player7)
+#
+# sorted_players = tree.create_sorted_list(tree.root)
+# tree.balanced_bst(sorted_players)
