@@ -15,28 +15,24 @@ class PlayerBST:
         self._root = value
 
     def insert(self, player):
-
         if self.root is None:
             self.root = PlayerBNode(player)
         else:
-            node = self.root
+            self._insert(player, self.root)
 
-            while True:
-                if player.name < node.player.name:
-                    if node.left is None:
-                        node.left = PlayerBNode(player)
-                        break
-                    else:
-                        node = node.left
-                elif player.name > node.player.name:
-                    if node.right is None:
-                        node.right = PlayerBNode(player)
-                        break
-                    else:
-                        node = node.right
-                else:
-                    node._player = player
-                    break
+    def _insert(self, player, current_node):
+        if player.name < current_node.player.name:
+            if current_node.left is None:
+                current_node.left = PlayerBNode(player)
+            else:
+                self._insert(player, current_node.left)
+        elif player.name > current_node.player.name:
+            if current_node.right is None:
+                current_node.right = PlayerBNode(player)
+            else:
+                self._insert(player, current_node.right)
+        else:
+            current_node._player = player
 
     def search(self, name):
         # steps = 0         For steps testing purposes
@@ -54,17 +50,17 @@ class PlayerBST:
         #return None, steps
 
     def balanced_bst(self, sorted_list):
-        def build_recursively(my_list):
-            if len(my_list) == 0: #If the list is empty
-                return None
-            middle_element = len(my_list) // 2
-            node = PlayerBNode(my_list[middle_element])
-            node.left = build_recursively(my_list[:middle_element])
-            node.right = build_recursively(my_list[middle_element + 1:])
-            # print("The middle:", node," The left:", node.left, " The right:", node.right)
-            return node
+        self.root = None
 
-        self.root = build_recursively(sorted_list)
+        def build_recursively(my_list):
+            if len(my_list) == 0:
+                return
+            middle_element = len(my_list) // 2
+            player = my_list[middle_element]
+            self.insert(player)  # use insert to add player properly
+            build_recursively(my_list[:middle_element])
+            build_recursively(my_list[middle_element + 1:])
+        build_recursively(sorted_list)
 
     def create_sorted_list(self, node, in_order_list=None):
         if in_order_list is None:

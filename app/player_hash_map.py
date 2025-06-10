@@ -46,7 +46,6 @@ class PlayerHashMap:
         player_list_at_index.delete_key(key)
         # The delete_key method will automatically raise a KeyError if the key is not found
 
-
     def size(self):
         """ Return number of players in the hash map """
         total_players = 0
